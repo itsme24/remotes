@@ -18,7 +18,7 @@ system_requirements <- function(os, os_release, path = ".", curl = Sys.which("cu
 
   os_release <- match.arg(os_release, os_versions[[os]])
 
-  rspm <- Sys.getenv("RSPM", DEFAULT_RSPM)
+  rspm <- Sys.getenv("RSPM_ROOT", DEFAULT_RSPM)
   rspm_repo_id <- Sys.getenv("RSPM_REPO_ID", DEFAULT_RSPM_REPO_ID)
   rspm_repo_url <- sprintf("%s/__api__/repos/%s", rspm, rspm_repo_id)
 

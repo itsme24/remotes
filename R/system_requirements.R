@@ -24,7 +24,20 @@ system_requirements <- function(os, os_release, path = ".", curl = Sys.which("cu
 
   desc_file <- normalizePath(file.path(path, "DESCRIPTION"))
 
-  res <- system2(curl, args = c("--silent", "--data-binary", shQuote(paste0("@", desc_file)), shQuote(sprintf("%s/sysreqs?distribution=%s&release=%s&suggests=true", rspm_repo_url, os, os_release))), stdout = TRUE)
+  res <- system2(
+    curl,
+    args = c(
+      "--silent",
+      "--data-binary",
+      shQuote(paste0("@", desc_file)),
+      shQuote(sprintf("%s/sysreqs?distribution=%s&release=%s&suggests=true",
+          rspm_repo_url,
+          os,
+          os_release)
+        )
+      ),
+    stdout = TRUE
+  )
 
   res <- json$parse(res)
 
@@ -34,7 +47,6 @@ system_requirements <- function(os, os_release, path = ".", curl = Sys.which("cu
 
   as.character(c(pre_install, install_scripts))
 }
-
 
 # Adapted from https://github.com/rstudio/r-system-requirements/blob/master/systems.json
 # OSs commented out are not currently supported by the API

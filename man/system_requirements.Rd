@@ -2,17 +2,22 @@
 % Please edit documentation in R/system_requirements.R
 \name{system_requirements}
 \alias{system_requirements}
-\title{Query the system requirements for a package (and its dependencies)}
+\title{Query the system requirements for a dev package (and its dependencies)}
 \usage{
-system_requirements(package, os, os_release)
+system_requirements(os, os_release, path = ".", curl = Sys.which("curl"))
 }
 \arguments{
-\item{package}{The package name to query}
-
 \item{os, os_release}{The operating system and operating system release version, see
 \url{https://github.com/rstudio/r-system-requirements#operating-systems} for the
 list of supported operating systems.}
+
+\item{path}{The path to the dev package's root directory.}
+
+\item{curl}{The location of the curl binary on your system.}
+}
+\value{
+A character vector of commands to run which will install the system requirements for the package.
 }
 \description{
-Query the system requirements for a package (and its dependencies)
+Returns a character vector of system commands to run, if you want to run '
 }

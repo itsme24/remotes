@@ -24,7 +24,7 @@ system_requirements <- function(os, os_release, path = ".", curl = Sys.which("cu
 
   desc_file <- normalizePath(file.path(path, "DESCRIPTION"))
 
-  res <- system2(curl, args = c("--silent", "--data-binary", paste0("@", desc_file), sprintf("%s/sysreqs?distribution=%s&release=%s&suggests=true", rspm_repo_url, os, os_release)), stdout = TRUE)
+  res <- system2(curl, args = c("--silent", "--data-binary", shQuote(paste0("@", desc_file)), shQuote(sprintf("%s/sysreqs?distribution=%s&release=%s&suggests=true", rspm_repo_url, os, os_release))), stdout = TRUE)
 
   res <- json$parse(res)
 
